@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>أحمد كمال - موقعي الشخصي</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f2f2f2;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2c3e50, #3498db);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffdd57;
+    }
+
+    section {
+      padding: 60px 20px;
+      background: #fff;
+      margin-bottom: 10px;
+    }
+
+    .welcome {
+      text-align: center;
+      background: #ffffff;
+    }
+
+    .welcome h2 {
+      font-size: 2em;
+      animation: fadeIn 2s ease;
+    }
+
+    .welcome p {
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    input, button, textarea {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: inherit;
+    }
+
+    form {
+      max-width: 400px;
+      margin: auto;
+      text-align: center;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>أحمد كمال</h1>
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#projects">أعمالي</a>
+      <a href="#tools">برامج حسابية</a>
+      <a href="#contact">تواصل معي</a>
+    </nav>
+  </header>
+
+  <section class="welcome" id="home">
+    <h2>مرحباً بكم في موقعي الشخصي!</h2>
+    <p>أنا أحمد كمال، مهتم بالتقنية والبرمجة. في هذا الموقع ستجد بعض من مشاريعي وبرامجي، بالإضافة إلى طرق للتواصل معي. سعيد بزيارتك!</p>
+  </section>
+
+  <section id="projects">
+    <h2>أعمالي</h2>
+    <p>هنا بعض من المشاريع التي عملت عليها مثل مواقع ويب بسيطة، أدوات حسابية، وتصاميم واجهات مستخدم.</p>
+  </section>
+
+  <section id="tools">
+    <h2>برامج حسابية</h2>
+    <p>احسب حجم الأسطوانة، مساحة الدائرة، أو حل معادلة من الدرجة الثانية:</p>
+    <div style="text-align:center">
+      <input type="number" id="r" placeholder="نصف القطر">
+      <input type="number" id="h" placeholder="الارتفاع">
+      <button onclick="calcCylinder()">حجم الأسطوانة</button><br>
+      <button onclick="calcCircle()">مساحة الدائرة</button><br>
+      <input type="number" id="a" placeholder="a">
+      <input type="number" id="b" placeholder="b">
+      <input type="number" id="c" placeholder="c">
+      <button onclick="solveQuadratic()">حل المعادلة</button>
+      <p id="result"></p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>تواصل معي</h2>
+    <form onsubmit="sendMessage(); return false;">
+      <input type="text" placeholder="الاسم" required><br>
+      <input type="email" placeholder="البريد الإلكتروني" required><br>
+      <textarea placeholder="رسالتك" rows="5" style="width:100%;"></textarea><br>
+      <button type="submit">إرسال</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 أحمد كمال. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script>
+    function calcCylinder() {
+      let r = document.getElementById('r').value;
+      let h = document.getElementById('h').value;
+      let volume = Math.PI * r * r * h;
+      document.getElementById('result').innerText = 'حجم الأسطوانة: ' + volume.toFixed(2);
+    }
+
+    function calcCircle() {
+      let r = document.getElementById('r').value;
+      let area = Math.PI * r * r;
+      document.getElementById('result').innerText = 'مساحة الدائرة: ' + area.toFixed(2);
+    }
+
+    function solveQuadratic() {
+      let a = document.getElementById('a').value;
+      let b = document.getElementById('b').value;
+      let c = document.getElementById('c').value;
+      let delta = b * b - 4 * a * c;
+      if (delta < 0) {
+        document.getElementById('result').innerText = 'لا يوجد حل حقيقي';
+      } else {
+        let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+        document.getElementById('result').innerText = 'الحلول: x1 = ' + x1.toFixed(2) + ', x2 = ' + x2.toFixed(2);
+      }
+    }
+
+    function sendMessage() {
+      alert('تم إرسال الرسالة! شكراً لتواصلك.');
+    }
+  </script>
+
+</body>
+</html>
